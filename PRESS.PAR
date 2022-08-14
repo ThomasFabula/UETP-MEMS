@@ -1,0 +1,49 @@
+/COM **********************************************************
+/COM
+/COM File: PRESS.PAR
+/COM
+/COM **********************************************************
+/COM
+/PREP7               ! enters the preprocessor
+/COM
+/COM ----------------- Parameter for the applied pressure
+/COM
+PRES= 0.05           ! internal pressure 0.05 MPa
+/COM
+/COM ------------------- Parameter for the material properties
+/COM                        of silicon in <110>-direction
+/COM
+SIYO=1.689e5         ! averaged Young's modulus [N/mm2]
+SIPO=0.0624          ! averaged Poisson's ratio
+/COM
+/COM ------------ Parameters for definition of the solid model
+/COM                  unit of length: mm
+/COM
+memx=1.000           ! half width of the membrane
+memy=0.020           ! thickness of the membrane
+frax=0.200           ! width of the silicon frame (bottom)
+diey=0.525           ! wafer thickness
+/COM
+/COM -------------- Parameters for definition of line divisions
+/COM
+/COM
+mdix=60        ! divisions along the x-direction of the membrane
+mdiy=3         !     "       "    "  y-    "      "  "      "
+fdix=10        !     "       "    "  x-    "      "  "    frame
+fdiy=7         !     "       "    "  y-    "      "  "      "
+/COM
+/COM **********************************************************
+/COM
+/COM Before entering the solid modeling you can overwrite
+/COM some predefined values of parameters as follows:
+/COM
+/COM                        <name>=<value>
+/COM
+/COM Next step: Generating the geometry and definition of the
+/COM            analysis type with the command:
+/COM
+/COM                      ******************
+/COM                      * /INP,press.geo *
+/COM                      ******************
+/COM
+/COM **********************************************************

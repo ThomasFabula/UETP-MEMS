@@ -1,0 +1,43 @@
+/COM **********************************************************
+/COM
+/COM File: BIMETAL.PAR
+/COM
+/COM **********************************************************
+/COM
+/PREP7               ! enters the preprocessor
+/COM
+/COM *********************** Definition of parameters
+/COM
+TDIV=25              ! difference of applied temperature
+                     ! referred to 25 Grad Celsius
+/COM ---------------- Parameters for definition of the solid
+/COM                  model unit of length: mm
+/COM
+beax=1.00            ! length of the elastic beam
+beay=0.010           ! thickness of the silicon beam
+frax=0.200           ! width of the silicon frame (bottom)
+lay =0.010           ! thickness of the aluminium layer
+diey=0.525           ! wafer thickness
+/COM
+/COM ------------ Parameters for definition of line divisions
+/COM
+bdix=50   ! divisions along the x-direction of the membrane
+bdiy=3    !     "       "    "  y-    "      "  "      "
+fdix=10   !     "       "    "  x-    "      "  "    frame
+fdiy=10   !     "       "    "  y-    "      "  "      "
+ldiy=3    !     "       "    "  y-    "     "  " bimetal layer
+/COM
+/COM **********************************************************
+/COM
+/COM Before the definition of the material data
+/COM you can overwrite some predefined values of the
+/COM parameters as follows:
+/COM
+/COM                       <name>=<value>
+/COM
+/COM Next step: definiton of material data with the command:
+/COM
+/COM             *********************
+/COM             *  /INP,bimetal,mat *
+/COM             *********************
+/COM **********************************************************

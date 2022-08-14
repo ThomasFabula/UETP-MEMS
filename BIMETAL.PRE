@@ -1,0 +1,56 @@
+/COM **********************************************************
+/COM
+/COM File: BIMETAL.PRE
+/COM
+/COM **********************************************************
+/COM
+/COM **********************************************************
+/COM
+/COM Read this input file to display the temperature-
+/COM dependent values of the Young's modulus and the
+/COM thermal expansion coefficient of silicon and
+/COM aluminium.
+/COM Command: /INP,BIMETAL,PRE before the preprocessing
+/COM          phase is finished
+/COM
+/COM **********************************************************
+/COM
+/plopts,INFO,OFF
+/plopts,TITLE,OFF
+/erase
+/wind,1,-1,0,0,1           ! defines the number and size
+/wind,2,0,1,0,1            ! of graphics window...
+/wind,3,-1,0,-1,0
+/wind,4,0,1,-1,0
+/erase
+/wind,1,on                 ! window number 1 with the
+/wind,2,off                ! temperature-dependent
+/wind,3,off                ! Young's modulus of silicon
+/wind,4,off                ! [N/mm2] ...
+MPPLO,ex,1,298,475,155000
+/COM
+/noerase
+/wind,1,off                ! window number 2 with the
+/wind,2,on                 ! temperature-dependent
+/wind,3,off                ! Young's modulus of aluminium
+/wind,4,off                ! [N/mm2] ...
+MPPLO,ex,2,298,475
+/COM
+/wind,1,off                ! window number 3 with the
+/wind,2,off                ! temperature-dependent
+/wind,3,on                 ! thermal expansion coefficient
+/wind,4,off                ! of silicon [1/K] ...
+MPPLO,alpx,1,298,475
+/COM
+/wind,1,off                ! window number 4 with the
+/wind,2,off                ! temperature-dependent
+/wind,3,off                ! thermal expansion coefficient
+/wind,4,on                 ! of aluminium [1/K] ...
+MPPLO,alpx,2,298,475
+/erase
+/wind,4,off
+/wind,1,1,-1,1
+/wind,1,on
+/plopts
+/COM
+/COM **********************************************************

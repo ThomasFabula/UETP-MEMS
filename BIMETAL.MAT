@@ -1,0 +1,84 @@
+/COM **********************************************************
+/COM
+/COM File: BIMETAL.MAT
+/COM
+/COM **********************************************************
+/COM  Material properties of silicon within the <110>-direction
+/COM  (MATERIAL 1)
+/COM **********************************************************
+/COM
+MPTEMP,1,298,373,473,573,673,773      ! defines temperature table
+MPTEMP,7,873,973,1073,1173,1273,1373  ! associated with
+/COM                                  ! property table
+/COM
+/COM -- Definition of the temperature-dependant C11-coefficient
+/COM associated with the predefined temperature values [N/mm2]:
+/COM
+c1=16.0e4    $c2=15.95e4   $c3=15.86e4   $c4=15.73e4
+c5=15.57e4   $c6=15.42e4   $c7=15.27e4   $c8=15.14e4
+c9=14.96e4   $c10=14.75e4  $c11=14.51e4  $c12=14.32e4
+/COM
+MPDATA,EX,1,1,c1,c2,c3,c4,c5,c6    ! defines property table to be
+MPDATA,EX,1,7,c7,c8,c9,c10,c11,c12  ! used with temperature table
+/COM
+SIPO=0.0624        ! averaged Poisson's ratio
+MP,NUXY,1,SIPO     ! defines Poisson' s ratio
+/COM
+/COM ----- Definition of the temperature-dependant thermal
+/COM       expansion coefficient:
+/COM
+a1=2.6e-6    $a2=3.1e-6    $a3=3.4e-6    $a4=3.7e-6
+a5=3.9e-6    $a6=4.1e-6    $a7=4.3e-6    $a8=4.4e-6
+a9=4.5e-6    $a10=4.6e-6   $a11=a10      $a12=a10
+/COM
+MPDATA,ALPX,1,1,a1,a2,a3,a4,a5,a6
+MPDATA,ALPX,1,7,a7,a8,a9,a10,a11,a12
+/COM
+/COM **********************************************************
+/COM
+/COM **********************************************************
+/COM Material properties of aluminium (MATERIAL 2)
+/COM **********************************************************
+/COM
+/COM -- Definition of the temperature-dependant Young's modulus
+/COM    associated with the predefined temperature values:
+/COM
+MPTEMP                             ! reset temperature table
+MPTEMP,1,260,280,300,325,350,375   ! defines temperature table
+MPTEMP,7,400,425,450,475    ! associated with property table
+/COM
+e1=0.714e5  $e2=0.706e5  $e3=0.699e5  $e4=0.693e5  ! [N/mm2]
+e5=0.685e5  $e6=0.676e5  $e7=0.666e5  $e8=0.655e5
+e9=0.646e5  $e10=0.636e5
+/COM
+MPDATA,EX,2,1,e1,e2,e3,e4,e5,e6
+MPDATA,EX,2,7,e7,e8,e9,e10,e11
+/COM
+ALPO=0.346         ! averaged Poisson's ratio
+MP,NUXY,2,ALPO     ! defines Poisson's ratio
+/COM
+/COM ----- Definition of the temperature-dependant thermal
+/COM       expansion coefficient:
+/COM
+MPTEMP                              ! reset temperature table
+MPTEMP,1,275,300,325,350,375,400    ! new temperature table...
+MPTEMP,7,425,450,475
+/COM
+/COM ----- Definition of the temperature-dependant thermal
+/COM       expansion coefficient [1/K]:
+/COM
+a1=22.75e-6  $a2=23.25e-6 $a3=23.75e-6 $a4=24.25e-6 $a5=24.625e-6
+a6=25.125e-6 $a7=25.45e-6 $a8=25.75e-6 $a9=26.00e-6
+MPDATA,ALPX,2,1,a1,a2,a3,a4,a5,a6
+MPDATA,ALPX,2,7,a7,a8,a9
+/COM
+/COM **********************************************************
+/COM
+/COM Next step: Generation of the geometry and definition of
+/COM            the analysis type with the command:
+/COM
+/COM                     ********************
+/COM                     * /INP,bimetal,geo *
+/COM                     ********************
+/COM
+/COM **********************************************************

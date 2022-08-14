@@ -1,0 +1,41 @@
+/COM **********************************************************
+/COM
+/COM File: PRESS.POS
+/COM
+/COM **********************************************************
+/COM
+/POST1             ! enters the postprocessing phase
+/COM
+/COM -------------------- Options for graphic display
+/COM
+set                ! reads data from the postdata file
+                   ! for postprocessing
+/COM
+/COM ------- command sequence for a) -------------------
+/COM
+plnsol,u,y         ! displays contours of nodal data
+                   ! for the y-displacements
+/COM
+/COM ------- command sequence for b) -------------------
+/COM
+plnsol,s,x         ! displays contours of nodal data
+                   ! for averaged normal stress
+                   ! (x-direction)
+/COM
+/COM ------- command sequence for c) -------------------
+/COM
+lpath,1,698        ! graphs the normal stress
+pdef,stress,s,x    ! (x-direction) along the path from
+plpath,stress      ! node number 1 to node number 688
+                   ! attention: node numbers depend on
+                   ! actual mesh !
+/COM
+/COM ------- command sequence for d) -------------------
+/COM
+prpath,stress      ! lists the previous graphed
+                   ! normal stress  on top of
+                   ! the structure
+                   ! attention: node numbers depend on
+                   ! actual mesh !
+/COM
+/COM **********************************************************

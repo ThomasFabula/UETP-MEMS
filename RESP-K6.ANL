@@ -1,0 +1,58 @@
+/COM *********************************************************
+/COM
+/COM File: RESP-K6.ANL
+/COM
+/COM *********************************************************
+/COM analysis options for HARMONIC RESPONSE ANALYSIS (KAN=6)
+/COM geometry defined by file: RESPRES.GEO
+/COM *********************************************************
+
+/COM   ************  define parameters
+kraf=1e-7            ! excitation force
+demf=1e-3            ! damping ratio
+fsta=4000            ! start frequency
+fsto=4500            ! stop frequency
+nanz=10              ! number of iterations
+
+/COM   ************  choose analysis type
+antype,harmic        ! Reduced Harmonic Response 
+hropt,reduc
+hrout,off            ! PRINT DISPLACEMENTS AS AMPLITUDE,PHASE
+dmprat,demf          ! specify constant damping ratio
+harfrq,fsta,fsto     ! define frequency range for harmonic loads
+nsubst,nanz,,1       ! define number of frequency points 
+outres,all,all
+kbc,1                ! define stepping of loads
+
+/COM   ************  define excitation force
+nsel,s,loc,x,LANG/2        ! select midnode
+nsel,r,loc,y,LANG/2
+f,all,fz,kraf        ! define force (see also D command)
+m,all,uz             ! assign MDOF
+nlist                ! list node with excitation
+total,50,1           ! let choose MDOFs automatically
+allsel               ! reselect all nodes
+
+/COM ****************************************************************** 
+/COM Before the preprocessing phase is finished you can
+/COM look for some model properties, like keypoints, lines, areas,
+/COM volumes (geometric model) or elements, nodes (FE-model) using
+/COM available graphic commands. 
+/COM
+/COM next step: The preprocessing phase will be finished and the solution
+/COM            phase have to be started using the following command
+/COM            sequence:
+/COM
+/COM                    ***********************************************
+/COM                    *  fini    ! Preprocessing phase is finished  *
+/COM                    *  /solu   ! Entering the solution mode       *
+/COM                    *  solve   ! Starts the solution              *
+/COM                    *  fini                                       *
+/COM                    ***********************************************
+/COM
+/COM Returned to the "BEGIN-level", you will entry the postprocessing
+/COM using the predefined macro "RESP-K6.MAC" by issuing:
+/COM
+/COM    RESP-K6 : for evaluating the results of the HARMONIC ANALYSIS
+/COM
+/COM ******************************************************************

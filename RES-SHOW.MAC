@@ -1,0 +1,63 @@
+/COM *********************************************************
+/COM
+/COM File: RES-SHOW.MAC
+/COM
+/COM *********************************************************
+/COM Macro to show results of MODAL ANALYSIS (KAN=2)
+/COM plot four mode shapes from /POST1
+/COM *********************************************************
+
+/COM /outp,respres,pic ! switch output to picture file
+/wind,1,-1,0,0,1       ! define number and size of graphics windows
+/wind,2,0,1,0,1
+/wind,3,-1,0,-1,0
+/wind,4,0,1,-1,0
+/view,1,1,1,1          ! define viewing direction for graphics display
+/view,2,1,1,1
+/view,3,1,1,1
+/view,4,1,1,1
+/type,1,HIDD           ! defines type of element display
+/type,2,HIDD
+/type,3,HIDD
+/type,4,HIDD
+/erase                 ! causes screen to be erased
+
+/com  ***************** choose Window 1
+/wind,1,on
+/wind,2,off
+/wind,3,off
+/wind,4,off
+set,1,1                ! load first load step (first eigenfrequency)
+plns,u,z               ! plot mode shape
+/noerase               ! suppress screen erase
+
+/com  ***************** choose Window 2
+/wind,1,off
+/wind,2,on
+/wind,3,off
+/wind,4,off
+set,1,2                ! load second load step 
+plns,u,z               ! plot mode shape
+
+/com  ***************** choose Window 3
+/wind,1,off
+/wind,2,off
+/wind,3,on
+/wind,4,off
+set,1,4                ! load fourth load step
+plns,u,z               ! plot mode shape
+
+/com  ***************** choose Window 4
+/wind,1,off
+/wind,2,off
+/wind,3,off
+/wind,4,on
+set,1,5                ! load fifth load step
+plns,u,z               ! plot mode shape
+/erase
+
+/wind,1,-1,1,-1,1      ! reset display
+/wind,4,off
+/wind,1,on
+
+/com ***************** MACRO finished succesfully ***************

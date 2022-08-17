@@ -1,0 +1,28 @@
+/COM *********************************************************
+/COM
+/COM File: RESP-K6.MAC
+/COM
+/COM *********************************************************
+/COM Resonant diaphragm pressure sensor
+/COM evaluate results of HARMONIC ANALYSIS (KAN=6)
+/COM *********************************************************
+
+/post26              ! enter Time-History-Postprocessor
+/view                ! reset the viewing direction 
+knot=61              ! assign midside node (MESH DEPENDENT)
+file,file,rfrq       ! switch to FILE10.DAT
+nsol,2,knot,u,z      ! specify nodal postdata to be stored
+/grid,1              ! PUT GRID ON PLOTS
+/axlab,y,ampl        ! define y-axis label
+plva,2               ! plot amplitude (variable 2)
+
+/COM plcp,1               ! define phase angle to display
+/COM /axlab,y,phas        ! define y-axis label
+/COM plva,2               ! plot phase angle
+
+prcp,1               ! define output form: AMPLITUDE, PHASE
+/outp,resp-k6,dat    ! switch output data to file: RESP-K6.DAT
+prva,2               ! write data
+/outp,term           ! switch back to screen output
+
+/com ***************** MACRO finished succesfully ***************

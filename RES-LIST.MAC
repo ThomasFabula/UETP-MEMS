@@ -1,0 +1,37 @@
+/COM *********************************************************
+/COM
+/COM File: RES-LIST.MAC
+/COM
+/COM *********************************************************
+/COM Macro to write results of MODAL ANALYSIS into disk file
+/COM *********************************************************
+/COM General remark:
+/COM   all defined FE-model parameters are also available
+/COM   in the temporary ANSYS-file: FILEPARM.DAT
+/COM *********************************************************
+
+
+/com ****************** generate listing of eigenfrequencies
+/outp,res-list,dat      ! switch output to file
+*msg,info
+ Listing of FE-model parameters (File: RES-LIST.DAT): 
+
+*msg,info
+ Material properties/geometry parameters/ANSYS-options/eigenfrequencies: 
+
+*msg,info,EMOD,POIS,RHO
+ Youngs modulus (N/mm2) %G %/Poissons ratio %G %/density (kg/mm3) %G
+
+*msg,info,LANG,DICK,XINC
+ Diaphragm: %/side length %G %/thickness %G %/element size (mm) %G
+
+*msg,info,ELTY,XANZ,TOTL
+ Element type %G %/side length division %G %/MDOFs Total %G
+
+set,list              ! write load step listing
+
+*msg,info
+ Additional user remarks: 
+/outp,term            ! switch back to screen output
+
+/com ***************** MACRO finished succesfully ***************

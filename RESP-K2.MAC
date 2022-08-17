@@ -1,0 +1,24 @@
+/COM *********************************************************
+/COM
+/COM File: RESP-K2.MAC
+/COM
+/COM *********************************************************
+/COM Resonant diaphragm pressure sensor
+/COM evaluate results of MODAL ANALYSIS (KAN=2)
+/COM *********************************************************
+
+/POST1               ! enter general Post-processor
+/VIEW,1,1,1,1        ! define the viewing direction
+set,list             ! list eigenfrequencies
+set,1,1              ! load first load step
+plnsol,u,z           ! plot first flexure mode shape
+
+/COM *********************************************************
+/COM load further load steps by issuing:
+/COM
+/COM   set,1,n       : where n is the load step number (1-5)
+/COM   plnsol,u,z    : plot coressponding mode shape 
+/COM
+/COM leave Post-processor with "fini"-command
+
+/com ***************** MACRO finished succesfully ***************

@@ -1,0 +1,38 @@
+/COM *********************************************************
+/COM
+/COM File: RESP-K2.ANL
+/COM
+/COM *********************************************************
+/COM analysis options for MODAL ANALYSIS (KAN=2)
+/COM geometry defined by file: RESPRES.GEO
+/COM *********************************************************
+
+antype,modal  ! MODE-FREQUENCY ANALYSIS (default: Householder)
+modopt,,5     ! EXPAND FIRST 5 MODE SHAPES
+mxpand,5      
+TOTL=50       ! number of MDOFs 
+total,TOTL,1  ! DEFINE TOTAL MASTER D.O.F., NO ROTATIONAL MDOFs
+
+/COM ****************************************************************** 
+/COM Before the preprocessing phase is finished you can
+/COM look for some model properties, like keypoints, lines, areas,
+/COM volumes (geometric model) or elements, nodes (FE-model) using
+/COM available graphic commands. 
+/COM
+/COM next step: The preprocessing phase will be finished and the solution
+/COM            phase have to be started using the following command
+/COM            sequence:
+/COM
+/COM                    ***********************************************
+/COM                    *  fini    ! Preprocessing phase is finished  *
+/COM                    *  /solu   ! Entering the solution mode      *
+/COM                    *  solve   ! Starts the solution
+/COM                    *  fini                                       *
+/COM                    ***********************************************
+/COM
+/COM Returned to the "BEGIN-level", you will entry the postprocessing
+/COM using the predefined macro "RESP-K2.MAC" by issuing:
+/COM
+/COM    RESP-K2 : for evaluating the results of the MODAL ANALYSIS
+/COM
+/COM ******************************************************************

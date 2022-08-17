@@ -1,0 +1,52 @@
+/COM *********************************************************
+/COM
+/COM File: RESP-K0.MAC
+/COM
+/COM *********************************************************
+/COM Resonant diaphragm pressure sensor
+/COM evaluate results of STATIC ANALYSIS (KAN=0)
+/COM *********************************************************
+
+/POST1               ! enter general Post-processor
+/VIEW,1,1,1,1        ! define viewing direction
+set,list             ! list load steps
+set                  ! load results (last iteration, if converged)
+
+/COM *************** plot stresses and displacements
+pldi,1               ! plot diaphragm deflection
+top                  ! switch to diaphragm "top"
+plns,s,x             ! plot stress SX
+plns,s,y             ! plot stress SY
+ples,s,1             ! plot stress SIG1, but unaveraged
+middle               ! switch to diaphragm "middle"
+plns,s,x             ! plot membran stress which leads to 
+                     ! stress stiffening and frequency shift
+
+/COM *************** plot along path (middle of diaphragm)
+/view,1,,,1          ! redefine viewing direction
+top
+kno1=56              ! define nodes (MESH DEPENDENT)
+kno2=66              ! define nodes (MESH DEPENDENT)
+lpath,kno1,kno2      ! define a path of nodes
+pdef,stress,s,x      ! defines a path item along the defined path
+plpa,stress          ! plot path: stress SX
+pdef,displ,u,z       ! defines a path item along the defined path
+plpa,displ           ! plot path: displacements
+
+/COM *************** write data to disk files
+/outp,res-stres,dat  ! file name for STRESS DATA
+prns                 ! write all STRESS DATA
+/outp,term
+/outp,res-disp,dat   ! file name for DISPLACEMENTS
+prdi                 ! write DISPLACEMENTS
+/outp,term
+
+/COM *********************************************************
+/COM to look at diaphragm BOTTOM enter:
+/COM
+/COM   bottom
+/COM   plns,ITEM,COMP  : where ITEM is S, U; and COMP is x, y, 1
+/COM
+/COM leave Post-processor with "fini"-command
+
+/com ***************** MACRO finished succesfully ***************

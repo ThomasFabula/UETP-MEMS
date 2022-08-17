@@ -1,0 +1,34 @@
+Filedirectory for RESPRES:
+==========================
+Resonant pressure sensor (17 files)
+
+
+FE-model geometry:
+------------------
+RESPRES  GEO - geometry of FE-model
+RESPRES  PAR - FE-model parameters (copy of FILEPARM.DAT)
+
+Modal analysis:
+---------------
+RESP-K2  ANL - Analysis file
+RESP-K2  MAC - Macro for /POST1
+RES-LIST MAC - Macro file for results
+RES-LIST DAT - Listing of results
+RES-SHOW MAC - Macro for displaying mode shapes
+RESPRES  PIC - Picture file for DISPLAY-program
+
+Restart analysis combined with static solution:
+----------------------------------------------
+RESP-K0  ANL - Analysis file for STATIC SOLU.
+RESP-K0  MAC - Macro file for STATIC SOLU.
+RES-DISP DAT - Result file for DISPLACEMENTS
+RES-STRE DAT - Result file for STRESS DATA
+RES-REST MAC - Analysis file for RESTART
+RES-REST DAT - Result data for RESTART
+
+Harmonic reduced analysis:
+--------------------------
+RESP-K6  ANL - Analysis file
+RESP-K6  MAC - Macro file /POST26
+RESP-K6  DAT - Result file
+

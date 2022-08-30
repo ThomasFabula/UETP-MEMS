@@ -1,0 +1,35 @@
+UETP-MEMS Course: Resonant microsensors, 
+
+Thomas Fabula, Hans-Joachim Wagner, Institute of Microstructure and Information Technology (IMIT), Villingen-Schwenningen, Germany
+Albert Prak, MESA Research Intitute, University of Twente, Enschede, the Netherlands
+
+
+Inhaltsverzeichnis: (Datei: INHVERZ.WP6)
+
+ 
+Contents
+
+
+	1	Introduction to MEMS and resonant sensors		1.1
+	1.1	Micro-electro-mechanical-systems			1.1
+	1.2	Resonant sensors					1.3
+	1.3	Scope of this course					1.6
+	References							1.8
+
+
+(...)
+
+	4	Demonstrations						4.1
+	4.1	Resonant sensor devices					4.1
+	4.2	Finite-Element-Method 					4.3
+	4.3	Numerical modeling of resonant sensors			4.4
+	4.3.1	Load dependent frequency change				4.4
+	4.3.2	Thermal behaviour of resonant sensors 			4.6
+	4.3.3 	Optimization of a 'beam-on-diaphragm' pressure sensor 	4.7
+	4.4	PC-based layout and FEA demonstrations			4.10
+	4.5	ANSYS program source listings				4.11
+	References							4.19
+
+(...)
+
+

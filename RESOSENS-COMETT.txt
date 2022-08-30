@@ -1,0 +1,35 @@
+COMETT-Course: Resonant Microsensors
+
+1. Introduction to MEMS and resonant sensors
+
+MEMS:
+- monolithic integrated devices (sensors, actuators)
+- packaging aspects (hybrids)
+- Bulk-micromachining (BMM) vs. surface micromachining (SMM)
+- anisotropic etching of silicon
+- typical geometries for resonant silicon sensors (beam, diaphragm)
+
+
+resonant sensors:
+- BAW-, SAW-, FPW- (Lamb wave) devices (acoustic waves in solids)
+- physical and chemical resonant sensors 
+- brief history of quartz sensors (DETF, AT-resonators) 
+- micromechanical silicon sensors with piezoelectric thin films
+- commercially available resonant silicon sensors (DRUCK, YOKOGAWA)
+
+
+4. Demonstrations:
+- static analysis (visualization of displacements, stress patterns)
+- modal analysis (visualization of mode shapes for different resonator geometries)
+- Finite-Element-Modeling of resonant sensors:
+	* Example 1: resonant beam force sensor
+	* Example 2: resonant diaphragm pressure sensor
+	* Example 3: resonant flow sensor
+	* Example 4: piezoelectric excitation via thin films
+	* Example 5: geometrical optimization of a triple beam resonator
+- FEM-program input code (ANSYS: source files)
+
+
+Thomas Fabula
+HSG-IMIT, VS-Villingen
+October 1993

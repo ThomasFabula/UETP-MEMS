@@ -1,0 +1,639 @@
+
+
+
+
+
+
+
+CHAPTER 4
+
+
+Demonstrations
+
+
+
+by: Thomas Fabula, Institute of Microstructure and Information Technology (IMIT), Villingen-Schwenningen, Germany
+
+
+
+
+This section of the course is intended to give some practical demonstrations on resonant microsensors in order to fresh up the more theoretical topics. Different resonant microsensor devices will be presented for pressure and force measurement based on silicon and quartz technology. Additionally, practical demonstrations will be given on personal computers concerning the design process, i.e. mask layouts and numerical calculations with finite element methods (FEM). Furthermore, some examples of finite element input codes, i.e. source files, are listed and results of some typical applications for static and dynamic analyses of resonant sensors are given in this chapter.
+
+
+4.1	Resonant sensor devices
+
+The presented resonant sensor devices were developed during a research project supported by the Bundesministerium für Forschung und Technologie (BMFT) under the coordination of the IMIT. There were four industrial project partners, i.e. a.) BIZERBA Werke GmbH & Co. KG, Balingen, b.) Robert Bosch GmbH, Stuttgart, c.) Gesellschaft für Mikrotechnik und Sensorik (GMS) mbH, Villingen and d.) MotoMeter GmbH, Leonberg involved in this research project [4.1]. 
+
+Example 1:
+A resonant force sensor based on a triple beam resonator structure in silicon with piezoelectric thin films is presented [4.2]. The design and fabrication process, as well as the characterization of this sensor device was chosen as case study and is discussed extensively in chapter 7. 
+
+Example 2:
+With the same technology as the resonant triple-beam force sensor, resonant diaphragm pressure sensors were realized. A micrograph of such a pressure sensor is shown in fig. 4.1 revealing the electrode geometry for selective mode excitation of the fundamental flexure vibration mode. Diaphragms were fabricated with side lengths of 5 mm and 10 mm, respectively, and diaphragm thicknesses varied between approximately 20 and 200 m. 
+
+Fig. 4.1:	Micrograph of a resonant diaphragm pressure sensor 
+
+Pressure sensitivities range from 10-70 Hz/mbar with maximum burst pressures of 2.5 and 0.15 bar, respectively. Due to thermal mismatch of the silicon-ZnO bimorph and the metal carrier the temperature cross-sensitivity is about several Hz/K. Depending on the internal stress of the ZnO thin film layers negative or positive temperature frequency coefficients are achieved [4.1]. A method for temperature compensation of the resonance frequency via structuring the electrodes and the ZnO thin film layers is demonstrated in chapter 4.3 by FE-modeling. Additionally, a complete processed (4 in.) silicon wafer comprising several resonant force and pressure sensors with piezoelectric ZnO thin films is presented.
+
+Example 3:
+A novel design of a resonant pressure sensor based on a quartz-diaphragm is demonstrated. The sensor device is realized with an AT crystal cut and comprises a bossed and grooved diaphragm structure [4.3]. An FE-optimized electrode configuration excites the resonator to low-frequency flexure vibrations. The fabrication technology and characteristics of this quartz pressure sensor are discussed in chapter 8.I of this booklet. Furthermore, a completely processed AT quartz blank with different sensor devices is presented. 
+
+
+4.2	Finite-Element-Method 
+
+For the analyzed microstructures an exact analytical description is often very difficult or even impossible to find, so numerical methods like finite element analysis (FEA) is used to study the behaviour as indicated in chapter 3.5. The finite element method (FEM) is widely used for the solution of practical engineering problems, also for the design and numerical modeling of microsensors. A comprehensive overview on FE-modeling of MEMS is given in the UETP-MEMS course 'CAD tools for MEMS' [4.4]. So here we will concentrate more on specific resonant sensor applications.   
+Analytical solutions of the boundary-value problems describing the behaviour of microsensors are only obtained in special cases assuming several idealizations as mentioned earlier. The main disadvantages are that clamping conditions and therefore the clamping regions can not be accounted for, especially if the stiffnesses of the resonator and the clamping region are comparable. Furthermore, non-homogeneous, anisotropic material properties and also multilayer structures cannot be modeled with sufficient accuracy. Additionally, distributed loads can not be modeled or must at least be over simplified. 
+As general numerical approximation method FEA facilitates the calculation of complex micromechanical resonators with arbitrary boundary-conditions under the influence of different non-linear mechanisms. Instead of solving the partial differential equation for a given physical problem the FE-method uses a variational approach. By this mathematical treatment a corresponding variational principle instead of the 'strong formulation' given by the classical (elliptical) boundary-value problem is considered [4.5-6]. The great advantage of the so-called 'weak formulation' of the physical problem is that it has less smoothness requirements to the solution. Approximation of the 'weak solution' is performed numerically by finite element discretization [4.7-8]. In this sense the FE-method is not limited to solve only elasticity problems but also coupled field effects, e.g. electro-thermo-mechanical or thermal fluid-structure interactions can be accounted for [4.9]. An other great advantage of the FE-method is that really arbitrary geometries can be handled in contrast to e.g. the finite difference method. 
+For structure mechanical problems the numerical solution of the 'weak' equation can be found by approximating the displacements u(x) with a linear combination of finite number of basis functions. These basis functions are the interpolation (shape) functions N(x) of the finite elements which divide the whole structure into finite subdomains connected by the 'nodes' at the element edges. The coefficients of the shape functions represent the values of the displacements at the nodes of the elements. They are called the nodal 'degrees of freedom' (DOF).
+If we leave these more mathematical considerations and look for the program implementation, the governing matrix equation on element level for static analyses reads:  [K] * {u} = {F}, where [K] is the stiffness matrix of the whole system, {F} is the external applied load vector and {u} is the unknown displacement vector. Due to nonlinearities the response of a microsensor varies disproportionally with the applied loads resulting in a displacement dependent change of the structures stiffness [K(u)]. In ANSYS these geometric nonlinearities are divided in two cases, named 'large deflection' and 'stress stiffening' [4.10]. Large deflection represents a change in stiffness resulting from a change in element spatial orientation as the microstructure deflects, which have to be considered for the simulation of diaphragms. This is done by updating the element orientations during loading and calculating an appropriate corrective load vector [4.11]. Since the stiffness is affected by the displacements the nonlinear equation [K(u)] * {u} = {F} is solved iteratively, e.g. with the Newton-Raphson solution technique. In general, for stressed microsensors both effects are significant. Dynamical electro-mechanical coupled analyses are performed using the piezoelectric state equations and applying variational methods to obtain the coupled matrix equations on element level [4.12]. In these coupled field analyses the DOFs at the nodes are the three mechanical displacements (UX, UY, UZ) and the electrical potential (PHI). Mechanical damping is described by the viscous damping matrix [C], which is related to the mass and stiffness matrix by the so-called Rayleigh damping coefficients , : [C] = [M] + [K]. Electro-mechanical interaction is accomplished through the symmetrical piezoelectric coupling matrix build from the piezoelectric moduli. The dielectric conductivity matrix depends on the permittivities [4.10].
+
+
+4.3	Numerical modeling of resonant sensors
+
+The finite element method is well suited to model the overall behaviour of resonant microsensors. Especially geometry related effects, like optimizing clamping [4.13] and decoupling regions [4.2], calculating different resonator cross-shapes [4.14] and estimating the mode shapes of rather complex resonator geometries. Also different effects, e.g. influence of piezoelectric thin film layers, on the dynamic behaviour of resonant sensors may be modeled [4.15]. Furthermore, different boundary conditions and distributed loads can be accounted for. FE-modeling is an important tool for the development of multilayer structures like piezoelectric driven microsensors or actuators. Examples of the calculation of eigenfrequencies and complex mode shapes for different resonant microsensors will be given in chapter 4.4 and some example source listings for FE-modeling in chapter 4.5, respectively.
+
+4.3.1	Load dependent frequency change
+The resonance frequency of a vibrating micromechanical structure is determined by its stiffness and mass distribution. In order to calculate the load dependent frequency change of a resonant sensor first the change of stiffness must be evaluated in a static finite element analysis. The static solution determines the displacements and stresses in the resonator by using the nonlinearity options 'large deflections' and 'stress stiffening' of ANSYS [4.16]. From the static solution the prestressed stiffness matrix of the system is used in a subsequent modal analysis to determine the shift of the eigenfrequencies. Depending on the resonator shape and the load case several nonlinearities may occur. For axial loading of beam structures only the stress stiffening effect has to be accounted. Resonant diaphragm pressure sensors exhibit large deflections under pressure loading resulting in nonlinear membrane stresses. The change of the resonator's stress state leads to a frequency shift. To simulate these effects the stiffness matrix of the finite element model has therefore to be modified at each load step depending on the deflection state of the diaphragm.
+In Fig. 4.2 the results of the numerically calculated and measured pressure-frequency characteristics for the fundamental flexure mode of a resonating silicon diaphragm excited by piezoelectric ZnO thin films are shown. The nominal diaphragm thickness is approximately 50 m, ZnO film thickness is about 11 m and the side length is 9.2 mm. The dashed and solid lines show the results of non-linear finite element simulations in comparison to experimental measurements (star symbols). Model S43 (ANSYS element SHELL43) comprises linear shell elements with isotropic material properties. Material data are weighted through the different layer thicknesses of silicon and ZnO resulting in mean values for Young's modulus, Poisson's ratio, and density. Furthermore, an ideal clamping of the diaphragm is assumed as boundary conditions. Model V95 (ANSYS element SOLID95) comprises quadratic solid elements with isotropic material properties and model V64 (ANSYS element SOLID64) accounts also for anisotropic material properties as well for silicon as for ZnO, and comprises linear solid elements. Both solid FE-models comprises the real clamping geometry defined by the (111)-crystal planes of silicon leading to a less stiffer clamping of the diaphragm. Due to non-linear effects membrane stresses occur in the diaphragm leading to a degressive pressure-deflection characteristics. Comparing measured data with the numerical results show a relative error of 2-7% in resonance frequencies f0, 6-19 % in center diaphragm deflection uz and up to 24% in pressure sensitivity df0/dp indicating a too stiff model behaviour. The approximation behaviour of the last model is obviously the best. The deviations of the numerical results are either due to the intrinsic residual stress in the ZnO-layer, the unknown material properties of thin film ZnO and probably a non-homogeneous diaphragm thickness. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fig. 4.2:	Comparison of simulated and measured frequency-pressure dependence of a resonating silicon diaphragm 
+
+More applications of dynamic FE-simulations to resonant diaphragm pressure sensors may be found in [4.17-19]. Calculations of the effective electromechanical coupling factors for different sensor geometries and piezoelectric thin film materials are carried out in [4.20]. However, coupled electromechanical calculations are limited by the unknown material properties of the thin films. Additionally, other technology dependent parameters influence the mechanical and electrical thin film properties (e.g. residual stress).
+
+4.3.2	Thermal behaviour of resonant sensors 
+Temperature variation has different influences on the behaviour of resonant microsensors. Beside the temperature dependence of the resonance frequency buckling may occur in doubly-clamped beams and diaphragms due to thermal induced compressive stress. In chapter 3.6 the response of the resonance frequency to an axial load was addressed and the buckling stress for ideal microbridges was given. The simple analytical model only holds for stresses below the buckling stress and was enhanced by Bouwstra et al. [4.21] and Geijselaers et al. [4.22]. With FE-methods the dynamic mechanical behaviour of a resonating microbridge mass-flow sensor was characterized and an analytical formulation beyond the buckling stress was deduced [4.22]. In the case of multilayer sensor structures, like the piezoelectrically driven force or pressure sensor, care has to be taken to compensate the temperature cross-sensitivity of the resonance frequency. In chapter 6.7 several methods will be reviewed to reduce the temperature dependence of resonant microsensors. For the resonant diaphragm pressure sensor a method for temperature compensation of the resonance frequency via structuring the electrodes and the piezoelectric thin film layer was investigated with FE-modeling [4.23]. In fig. 4.3 the temperature dependence of a Si-ZnO-bimorph diaphragm pressure sensor is shown. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fig. 4.3:	Temperature cross-sensitivity reduction of a Si-ZnO-bimorph diaphragm resonator due to lateral layer structuring
+
+The reference electrode configuration (REF) corresponds to that shown in fig. 4.1 securing selective mode excitation. The further characteristics refer to electrode layouts, where the outer electrode area was decreased. The electrode configuration (R3) exhibits a five times lower temperature dependence, i.e. -1.36 Hz/K, corresponding to approximately 170 ppm/K.
+
+
+4.3.3	Optimization of a 'beam-on-diaphragm' pressure sensor 
+
+For the realization of pressure sensors a resonating beam connected to a diaphragm at both ends, so-called 'beam-on-diaphragm' structures, is preferred. In this case the pressure sensitive element (diaphragm) and the resonator (doubly-clamped beam) are separated. In recent years several beam-on-diaphragm (BOD) pressure sensors were realized [4.24-26]. The bod-sensor device from Greenwood et al. [4.24] is today also commercially available (see chapter 8.II). Monolithic beam-on-diaphragm microstructures for sensor applications may be fabricated by means of laser machining and anisotropic etching techniques [4.27]. The pressure-frequency-characteristic for such a device was measured by acoustical excitation of the microbridge to resonant vibrations and optical detection of the resonance frequency. In the pressure range between 0.8 bar and +1.0 bar the pressure-frequency-characteristic is almost linear with a sensitivity of about 4.5 kHz/bar and with a fundamental beam resonance frequency of 82.08 kHz. FEA was used to optimize the geometrical dimensions of the sensor structure with respect to maximum sensitivity and pressure range [4.23]. 
+The following investigations were accomplished to optimize the sensor geometry with respect to the sensor characteristics, relating the pressure sensitivity and the maximal load which can be introduced to the sensor structure without break or damage. Due to the detecting principle it is evident, that the pressure sensitivity will be enhanced if the stress in the microbridge is increased at constant pressure difference. As there are no analytical formulas available concerning the dynamic behaviour of this complex sensor geometry, FEA was used to predict the sensor characteristics and to analyse geometric modifications on the sensor performance. A three dimensional FE-model of the sensor structure was created with solid modeler of I-DEAS [4.28], and FE-simulations were carried out with ANSYS using one quarter of the BOD sensor structure and considering anisotropic material properties of single crystal silicon. For these calculations a beam length of 1.95 mm and a thickness of 42.4 m were assumed. In fig. 4.4 the geometry of the quarter model and the results of the FE calculations are presented. In the upper left window (1) the displacements uz of the sensor structure caused by a pressure difference acting on the diaphragm are shown. By applying a pressure difference of 1 bar the maximum displacement of the diaphragm is about 1 m. Due to the leverage principle a stress concentration occurs in the microbridge resulting in a maximum tensile stress y of about 24.7 MPa as shown in window (2). The finite element mesh was refined in the beam and in the clamping region as shown in window (3) to get a better stress resolution. Due to the complex geometry the BOD structure is able to vibrate in several different flexure modes. For the following calculations only the first fundamental flexure mode of the bridge and the first antisymmetric coupled mode of the beam and the diaphragm were considered (4).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fig. 4.4:	Calculated displacements uz (1), stress distribution y (2), element mesh (3), and antisymmetric flexure mode (4) of the BOD microstructure
+
+As a strong influence on the pressure sensitivity is expected, the diaphragm thickness was varied in the range between 50 and 300 m while the remaining geometrical dimensions were kept constant. The corresponding resonance frequencies of the diaphragm (fdiaphragm) and the beam (fbeam) were calculated. While the frequency of the first fundamental beam flexure mode is nearly independent of the diaphragm thickness, the frequency of the diaphragm is approximately proportional to its thickness as shown in fig. 4.5. At a thickness of about 130 m there is a cross-over of the resonance frequencies. This geometrical constellation should be avoided, because the vibration energy of the beam will be transferred into the diaphragm due to mode coupling leading to a reduction of the Q-factor. Additionally, the unimodality of the BOD-sensor structure is drastically decreased.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fig. 4.5:	Calculated resonance frequencies of the diaphragm (fdiaphragm) and the beam (fbeam) depending on the diaphragm thickness
+
+The resonance frequencies of the microbridges were calculated in dependence of the pressure difference in the region between 0 and 1 bar for different diaphragm thicknesses and side lengths. With this BOD sensor geometry it is possible to realize pressure sensors in the region between 0.5 and 12 bar with identical layout only by adapting the diaphragm thickness. By reducing the diaphragm side length higher pressures can be detected. FE-calculations were carried out for a 2 mm  2 mm  300 m diaphragm in combination with a 1 mm  120 m  42.4 m microbridge. The fundamental resonance frequency has been calculated to 386 kHz, and the pressure sensitivity is about 141 Hz/bar in the range between 0 and 100 bar. At the maximum pressure difference pmax = 100 bar a tensile stress of max  60 MPa will occur in the microbridge. In conclusion, by variation of the geometrical dimensions pressure sensors based on BOD structures can be fabricated for a wide pressure range. The FE-method is an indispensable tool for optimization of such complex sensor geometries like the BOD-structure.
+
+ 
+4.4	PC-based layout and FEA demonstrations
+
+Layout demonstration 
+During the practical demonstrations the fabrication process of resonant sensor devices with ZnO thin films will be animated on personal computers. The mask layout for the resonant triple beam sensor and the resonant diaphragm pressure sensor (see fig. 4.1) will be demonstrated. Additionally, the fabrication process sequence (see also chapter 7) will be visualized and discussed. 
+
+FE-demonstration 
+Several results of finite element analyses (FE-program ANSYS [4.13]) can be visualized interactively or automatically on the personal computers. Following ANSYS picture files (*.PIC) are compiled to disk and can be invoked with the ANSYS utility program DISPLAY.EXE:
+
+BOD-pressure sensor: The element mesh of the quarter of the BOD-pressure sensor geometry is shown in BOD2. The beam-diaphragm flexural vibration mode of the BOD-pressure sensor (side view) is shown in BOD2DYN. The mechanical displacements (UZ = 1 um), the stress concentration (SY = 24.7 MPa) in the beam, the fine element mesh in the clamping region and the coupled beam-diaphragm flexure vibration mode shape are shown in BOD4DISS.
+
+Diaphragm pressure sensor:
+The static and dynamic simulation results of the diaphragm pressure sensor in fig 4.1 are shown. RESPRES: first 4 flexural vibration modes (2D-model), SHELLUZ: displacements under homogeneous pressure loading (p=1 bar, UZ=55 um, 9.2 mm x 9.2 mm, diaphragm thickness: 25 m). SHELLMEM contains the stress distribution on top of the diaphragm and was used to design the electrode configuration (see fig 4.1) for selective mode excitation of the fundamental flexure mode. RES-EPLO shows the element mesh and boundary conditions (2D-model) of the diaphragm pressure sensor. In order to account for the material anisotropy of silicon and ZnO and the piezoelectric coupling a 3D-model is necessary. MEMELEM shows the bimorph model of the diaphragm pressure sensor with a homogeneous piezoelectric thin film layer. LAY-REF shows the same diaphragm pressure sensor, but with structured electrodes and piezoelectric thin film layer. With this model the mode selectivity and temperature compensation of the resonance frequency was calculated [4.23] (see also chapter 4.3.2 and fig. 4.3).
+
+Quartz force sensor:
+The simulation results of a modal analysis are shown in QUARZ, where the first 4 flexural vibrations modes of a Double-ended-tuning-fork (DETF) are visualized.
+
+Triple beam force sensor:
+The file TRIPLE contains the element mesh, the first 3 flexural vibrations mode shapes of the triple-beam force sensor discussed in detail in chapter 7.
+ 
+4.5	ANSYS program source listings
+
+
+/COM *********************************************************
+/COM File: RESPRES.GEO 
+/COM *********************************************************
+/COM Resonant diaphragm pressure sensor in (100)-silicon
+/COM *********************************************************
+
+/PREP7            ! enter Pre-processor
+/TITLE, Resonant diaphragm pressure sensor
+
+/COM ******* material properties for Si(110)
+EMOD=1.689e5      ! Young's modulus [N/mm2]
+POIS=0.064        ! Poisson's ratio
+RHO=2.329E-9      ! material density [kg/mm3]
+DICK=.025         ! diaphragm thickness [mm]
+LANG=9.20         ! diaphragm side length [mm]
+XANZ=10           ! number of elements along diaphragm side
+ELTY=43           ! element type: SHELL43
+XINC=LANG/XANZ    ! element size [mm]
+
+/COM ******** assign material properties
+MP,EX,1,EMOD      ! assign Young's modulus
+MP,NUXY,1,POIS    ! assign Poisson's  ratio
+MP,DENS,1,RHO     ! assign material density
+R,1,DICK          ! assign diaphragm thickness
+
+/COM ******** definition of nodes 
+n,1               ! define first node at origin
+n,xanz+1,lang     ! define node at diaphragm length 
+fill              ! fill nodes between first and last node
+ngen,xanz+1,xanz+1,all,,,,xinc ! generate nodes
+
+/COM ******** definition of elements
+ET,1,ELTY            ! choose element type
+e,1,2,xanz+3,xanz+2  ! define first element
+egen,xanz,1,all      ! generate one element line
+egen,xanz,xanz+1,all ! copy element line
+
+/COM ******** definition of boundary conditions
+nsel,s,loc,x            ! select nodes on y-axis
+nsel,a,loc,y            ! select nodes on x-axis
+nsel,a,loc,x,LANG       ! additional selection of nodes
+nsel,a,loc,y,LANG
+d,all,all         ! all DOFs of selected nodes are set to zero
+ALLSEL            ! reselect all nodes, elements, ... 
+WSORT             ! optimize wavefront by renumbering
+
+/COM ******** options for graphic display
+/sho,x11          ! sets device for graphic display
+/view,1,1,1,1     ! define view
+/pbc,all,1        ! plot all boundary conditions
+save              ! save model data for further RESUME
+
+read analysis files with following commands:
+	/INP,RESP-K0,ANL : for STATIC ANALYSIS     or
+	/INP,RESP-K2,ANL : for MODAL ANALYSIS      or
+	/INP,RESP-K6,ANL : for HARMONIC ANALYSIS
+
+ 
+/COM *********************************************************
+/COM File: RESP-K0.ANL
+/COM *********************************************************
+/COM analysis options for STATIC ANALYSIS (KAN=0)
+/COM geometry defined by file: RESPRES.GEO
+/COM *********************************************************
+
+/solu            ! enter Solution-Phase
+antype,static    ! STATIC ANALYSIS  with NONLINEAR options
+nlgeom,on        ! LARGE DEFLECTION SOLUTION 
+sstif,on         ! INCLUDE STRESS STIFFENING
+pstres,on        ! include prestress effects
+nsubst,5,5       ! perform 5 iterations
+ncnv,2           ! terminate analysis if solution does not converge
+cnvtol,u         ! displacement convergence checking is used
+cnvtol,rot       ! rotation convergence checking is also used
+TOTL=50          ! define number of MDOFs for subsequent MODAL ANALYSIS
+total,TOTL,1     ! TOTAL MASTER D.O.F., NO ROTATIONAL MDOFs
+DRUK=0.005       ! define pressure value [N/mm2], 1 bar = 0.1 N/mm2
+sf,all,PRES,DRUK ! put pressure on diaphragm
+solve   	   ! Start solution  
+fini             ! leave PRE-Processor
+
+Returned to the "BEGIN-level", you will entry the postprocessing using the predefined macro "RESP-K0.MAC" by issuing RESP-K0 for evaluating the results of the STATIC ANALYSIS:
+
+/COM *********************************************************
+/COM File: RESP-K0.MAC
+/COM *********************************************************
+/COM Resonant diaphragm pressure sensor
+/COM evaluate results of STATIC ANALYSIS (KAN=0)
+/COM *********************************************************
+
+/POST1               ! enter general Post-processor
+/VIEW,1,1,1,1        ! define viewing direction
+set,list             ! list load steps
+set                  ! load results (last iteration, if converged)
+
+/COM *************** plot stresses and displacements
+pldi,1               ! plot diaphragm deflection
+top                  ! switch to diaphragm "top"
+plns,s,x             ! plot stress SX
+plns,s,y             ! plot stress SY
+ples,s,1             ! plot stress SIG1, but unaveraged
+middle               ! switch to diaphragm "middle"
+plns,s,x             ! plot membrane stress which leads to 
+                     ! stress stiffening and frequency shift
+
+/COM *************** plot along path (middle of diaphragm)
+/view,1,,,1          ! redefine viewing direction
+top
+kno1=56              ! define nodes (MESH DEPENDENT)
+kno2=66              ! define nodes (MESH DEPENDENT)
+lpath,kno1,kno2      ! define a path of nodes
+pdef,stress,s,x      ! defines a path item along the defined path
+plpa,stress          ! plot path: stress SX
+pdef,displ,u,z       ! defines a path item along the defined path
+plpa,displ           ! plot path: displacements
+/COM *************** write data to disk files
+/outp,res-stres,dat  ! file name for STRESS DATA
+prns                 ! write all STRESS DATA
+/outp,term
+/outp,res-disp,dat   ! file name for DISPLACEMENTS
+prdi                 ! write DISPLACEMENTS
+/outp,term
+
+leave Post-processor with "fini"-command
+
+/COM *********************************************************
+/COM File: RESP-K2.ANL
+/COM *********************************************************
+/COM analysis options for MODAL ANALYSIS (KAN=2)
+/COM geometry defined by file: RESPRES.GEO
+/COM *********************************************************
+
+/outp,modal,crm
+
+antype,modal  ! MODE-FREQUENCY ANALYSIS (default: Householder)
+modopt,,5     ! EXPAND FIRST 5 MODE SHAPES
+mxpand,5      
+TOTL=50       ! number of MDOFs 
+total,TOTL,1  ! DEFINE TOTAL MASTER D.O.F., NO ROTATIONAL MDOFs
+
+Before the preprocessing phase and solution set up phase is finished you can look for some model properties, like keypoints, lines, areas, volumes (geometric model) or elements, nodes (FE-model) using available graphic commands. 
+
+solve          ! Starts the solution
+/outp
+fini
+
+Returned to the "BEGIN-level", you will entry the postprocessing using the predefined macro "RESP-K2.MAC" by issuing:  RESP-K2 for evaluating the results of the MODAL ANALYSIS:
+
+/COM *********************************************************
+/COM File: RESP-K2.MAC
+/COM *********************************************************
+/COM Resonant diaphragm pressure sensor
+/COM evaluate results of MODAL ANALYSIS (KAN=2)
+/COM *********************************************************
+
+/POST1               ! enter general Post-processor
+/VIEW,1,1,1,1        ! define the viewing direction
+set,list             ! list eigenfrequencies
+set,1,1              ! load first load step
+plnsol,u,z           ! plot first flexure mode shape
+
+
+load further load steps by issuing: set,1,n  where n is the load step number (here: 1-5) and: plnsol,u,z  plots corresponding mode shapes. Leave Post-processor with "fini"-command.
+
+
+File: MODAL.CRM
+
+ PERFORM A MODAL ANALYSIS
+  THIS WILL BE A NEW ANALYSIS
+
+ USE HOUSEHOLDER METHOD
+  EXTRACT    5 MODES
+  PRINT      0 REDUCED MODES
+  NORMALIZE THE MODE SHAPES TO THE MASS MATRIX
+
+ NUMBER OF MODES TO EXPAND=     5
+  DO NOT CALCULATE ELEMENT RESULTS
+
+ PARAMETER TOTL     =     50.00000    
+
+ TOTAL MASTER D.O.F.=    50
+ NO ROTATIONAL MASTER KEY=  1
+
+ *****  ANSYS SOLVE    COMMAND  *****
+
+ ***** ANSYS - ENGINEERING ANALYSIS SYSTEM  REVISION 5.0A    *****
+
+  Resonant diaphragm pressure sensor                                         
+                       S O L U T I O N   O P T I O N S
+
+   PROBLEM DIMENSIONALITY. . . . . . . . . . . . .3-D         
+   DEGREES OF FREEDOM. . . . . . UX   UY   UZ   ROTX ROTY ROTZ 
+   ANALYSIS TYPE . . . . . . . . . . . . . . . . .MODAL                
+      EXTRACTION METHOD. . . . . . . . . . . . . .REDUCED     
+   NUMBER OF MODES TO EXTRACT. . . . . . . . . . .     5
+   NUMBER OF REDUCED MODES TO PRINT. . . . . . . .     0
+   NUMBER OF MASTER DOF. . . . . . . . . . . . . .    50
+   NUMBER OF MODES TO EXPAND . . . . . . . . . . .     5
+   ELEMENT RESULTS CALCULATION . . . . . . . . . .OFF
+
+                      L O A D   S T E P   O P T I O N S
+
+   LOAD STEP NUMBER. . . . . . . . . . . . . . . .     1
+   PRINT OUTPUT CONTROLS . . . . . . . . . . . . .NO PRINTOUT
+   DATABASE OUTPUT CONTROLS. . . . . . . . . . . .ALL DATA WRITTEN
+
+            ***** CENTROID, MASS, AND MASS MOMENTS OF INERTIA *****
+
+  CALCULATIONS ASSUME ELEMENT MASS AT ELEMENT CENTROID
+
+  TOTAL MASS =   .49282E-08
+
+                           MOM. OF INERTIA         MOM. OF INERTIA
+     CENTROID               ABOUT ORIGIN           ABOUT CENTROID
+
+  XC =   4.6000          IXX =    .1387E-06      IXX =    .3441E-07
+  YC =   4.6000          IYY =    .1387E-06      IYY =    .3441E-07
+  ZC =   .00000E+00      IZZ =    .2774E-06      IZZ =    .6882E-07
+                         IXY =   -.1043E-06      IXY =    .1323E-22
+                         IYZ =    .0000E+00      IYZ =    .0000E+00
+                         IZX =    .0000E+00      IZX =    .0000E+00
+
+  *** MASS SUMMARY BY ELEMENT TYPE ***
+
+  TYPE      MASS
+     1   .492816E-08
+
+ Range of element maximum matrix coefficients in global coordinates
+ Maximum= 1909.14616 at element 20.                                      
+ Minimum= 1909.14616 at element 55.                                      
+
+   *** ELEMENT MATRIX FORMULATION TIMES
+  TYPE  NUMBER   ENAME      TOTAL CP  AVE CP
+
+     1     100  SHELL43       1.640     .016
+ Time at end of element matrix formulation CP= 2.87.                     
+ 
+ Estimated number of active DOF= 486.                                    
+ Maximum wavefront= 124.                                                 
+ 
+ Time at end of matrix triangularization CP= 4.05.                       
+ Equation solver maximum pivot= 7635.86132 at node 20 UX.                
+ Equation solver minimum pivot= 1.29617023 at node 109 ROTZ.             
+
+     ***** EIGENVALUE (NATURAL FREQUENCY) SOLUTION *****
+
+  MODE    FREQUENCY (CYCLES/TIME)
+
+    1      4202.44957    
+    2      8728.82514    
+    3      8885.92158    
+    4      12931.8617    
+    5      16428.5348    
+
+
+   *** PROBLEM STATISTICS
+  ACTUAL NO. OF ACTIVE DEGREES OF FREEDOM =    436
+  R.M.S. WAVEFRONT SIZE =   109.6
+  NUMBER OF MASTER DEGREES OF FREEDOM =    50
+
+
+ *** ANSYS BINARY FILE STATISTICS
+  BUFFER SIZE USED=  4096
+         .531 MB WRITTEN ON ELEMENT MATRIX FILE: file.emat
+         .266 MB WRITTEN ON ELEMENT SAVED DATA FILE: file.esav
+         .391 MB WRITTEN ON TRIANGULARIZED MATRIX FILE: file.tri
+         .047 MB WRITTEN ON MODAL MATRIX FILE: file.mode
+         .125 MB WRITTEN ON RESULTS FILE: file.rst
+
+ 
+/COM *********************************************************
+/COM File: RES-LIST.MAC
+/COM *********************************************************
+/COM Macro to write results of MODAL ANALYSIS into disk file
+/COM *********************************************************
+
+/post1                  ! enter POST-processor
+/com ****************** generate listing of eigenfrequencies
+/outp,res-list,dat      ! switch output to file
+*msg,info
+ Listing of FE-model parameters (File: RES-LIST.DAT): 
+
+*msg,info
+ Material properties/geometry parameters/ANSYS-options/eigenfrequencies: 
+
+*msg,info,EMOD,POIS,RHO
+ Youngs modulus (N/mm2) %G %/Poissons ratio %G %/density (kg/mm3) %G
+
+*msg,info,LANG,DICK,XINC
+ Diaphragm: %/side length %G %/thickness %G %/element size (mm) %G
+
+*msg,info,ELTY,XANZ,TOTL
+ Element type %G %/side length division %G %/MDOFs Total %G
+
+set,list              ! write load step listing
+*msg,info
+ Additional user remarks: 
+/outp,term            ! switch back to screen output
+fini                  ! leave POST-processor
+
+
+
+
+File: RES-LIST.DAT
+
+ Listing of FE-model parameters (File: RES-LIST.DAT):                    
+ Material properties/geometry                                            
+  parameters/ANSYS-options/eigenfrequencies:                             
+ Youngs modulus (N/mm2) 168900                                           
+  Poissons ratio 6.4E-02                                                 
+  density (kg/mm3) 2.329E-09.                                            
+ Diaphragm:                                                              
+  side length 9.2                                                        
+  thickness 2.5E-02                                                      
+  element size (mm) 0.92.                                                
+ Element type 43                                                         
+  side length division 10                                                
+  MDOFs Total 50.                                                        
+
+  *****  INDEX OF DATA SETS ON RESULTS FILE  *****
+
+   SET   TIME/FREQ    LOAD STEP   SUBSTEP  CUMULATIVE
+     1  4202.4             1         1         1
+     2  8728.8             1         2         2
+     3  8885.9             1         3         3
+     4  12932.             1         4         4
+     5  16429.             1         5         5
+ Additional user remarks:                                                
+
+ 
+/COM *********************************************************
+/COM File: RES-REST.MAC
+/COM *********************************************************
+/COM Resonant diaphragm pressure sensor
+/COM   make a RESTART analysis on a static solution
+/COM   and evaluate the load dependent frequencies by using
+/COM   the modified STIFFNESS matrix of the system
+/COM *********************************************************
+
+antype,modal         ! activate prestressed modal analysis
+total,50,1           ! -> use 50 MDOFs, exclude rotational DOFs
+modopt,,3            ! -> use Householder method
+mxpand,3             ! -> expand 3 modes to full DOF set 
+pstres,on            ! -> include prestress effects
+solve                ! start RESTART analysis
+fini                 ! back to BEGIN level
+
+/POST1               ! enter general Post-processor
+set,list             ! list load steps
+set,1,1
+/view,1,1,1,1
+pldi,1
+
+/COM *************** write data to disk files
+/outp,res-rest,dat  ! file name for altered frequencies
+                    ! due to pressure load
+set,list
+/outp,term
+
+ 
+/COM *********************************************************
+/COM File: RESP-K6.ANL
+/COM *********************************************************
+/COM analysis options for HARMONIC RESPONSE ANALYSIS (KAN=6)
+/COM geometry defined by file: RESPRES.GEO
+/COM *********************************************************
+
+/COM   ************  define parameters
+kraf=1e-7            ! excitation force
+demf=1e-3            ! damping ratio
+fsta=4000            ! start frequency
+fsto=4400            ! stop frequency
+nanz=30              ! number of iterations
+
+/COM   ************  choose analysis type
+/solu                ! enter SOLUTION
+antype,harmic        ! Reduced Harmonic Response 
+hropt,reduc
+hrout,off            ! PRINT DISPLACEMENTS AS AMPLITUDE,PHASE
+dmprat,demf          ! specify constant damping ratio
+harfrq,fsta,fsto     ! define frequency range for harmonic loads
+nsubst,nanz,,1       ! define number of frequency points 
+outres,all,all
+kbc,1                ! define stepping of loads
+
+/COM   ************  define excitation force
+nsel,s,loc,x,LANG/2        ! select mid node
+nsel,r,loc,y,LANG/2
+f,all,fz,kraf        ! define force (see also D command)
+m,all,uz             ! assign MDOF
+nlist                ! list node with excitation
+total,50,1           ! let choose MDOFs automatically
+allsel               ! reselect all nodes
+solve   		! Starts the solution
+fini    		! exists SOLUTION-phase
+
+Returned to the "BEGIN-level", you will entry the postprocessing using the predefined macro "RESP-K6.MAC":
+
+/COM *********************************************************
+/COM File: RESP-K6.MAC
+/COM *********************************************************
+/COM Resonant diaphragm pressure sensor
+/COM evaluate results of HARMONIC ANALYSIS (KAN=6)
+/COM *********************************************************
+
+/post26              ! enter Time-History-Postprocessor
+/view                ! reset the viewing direction 
+knot=61              ! assign mid side node (MESH DEPENDENT)
+file,file,rfrq       ! switch to FILE10.DAT
+nsol,2,knot,u,z      ! specify nodal postdata to be stored
+/grid,1              ! PUT GRID ON PLOTS
+/axlab,y,ampl        ! define y-axis label
+plva,2               ! plot amplitude (variable 2)
+
+plcp,1               ! define phase angle to display
+/axlab,y,phas        ! define y-axis label
+plva,2               ! plot phase angle
+
+prcp,1               ! define output form: AMPLITUDE, PHASE
+/outp,resp-k6,dat    ! switch output data to file: RESP-K6.DAT
+prva,2               ! write data
+/outp,term           ! switch back to screen output
+ 
+References
+
+
+[4.1]	Abschlußbericht zum BMFT-Verbundprojekt "Einsatz der Mikromechanik zur Herstellung frequenzanaloger Sensoren", VDI-VDE Technologiezentrum Informationstechnik GmbH, Berlin (1993)
+[4.2]	Th. Fabula, H.-J. Wagner, B. Schmidt, S. Büttgenbach, Triple beam resonant silicon force sensor based on piezoelectric thin films, Sensors and Actuators A, 41-42, (1994) 375-380
+[4.3]	H.-J. Wagner, W. Hartig, S. Büttgenbach, Design and fabrication of resonating AT-quartz diaphragms as pressure transducers, Sensors and Actuators A, 41-42, (1994) 389-393
+[4.4]	H. Pavlicek, G. Wachutka, T. Fabula, N. Hey, H. Haffner, T. Feudel, R. Strecker: UETP-MEMS, CAD Tools for MEMS, Course Proceedings, FSRM Neuchatel, Schweiz (1993) 
+[4.5]	K.J. Bathe, Finite element procedures in engineering analysis, Prentice Hall Inc., Englewood Cliffs, New Jersey (1982) 
+[4.6]	O.C. Zienkiewicz, Methode der finiten Elemente, 2. edition, Carl Hanser Verlag, München (1984)
+[4.7]	D. Braess, Finite Elemente, Springer-Verlag, Berlin (1991)
+[4.8]	P.G. Ciarlet, The finite elemente method for elliptical problems, North-Holland, Amsterdam - New York - Oxford (1978)
+[4.9]	Th. Fabula, N. Hey, S. Messner: Gekoppelte Feldberechnung eines mikromechanischen Strömungssensors, 11. CADFEM Users' Meeting, Bamberg, 27.-29. Oktober 1993 
+[4.10]	P. Kohnke, ed., ANSYS User's Manual for Revision 5.0, Volume IV, Theory, Swanson Analysis Systems, Inc., Houston, PA, USA (1992)
+[4.11]	C.C. Rankin, F.A. Brogan, An element independent corotational procedure for the treatment of large rotations, Journal of Pressure Vessel Technology, Vol. 108, May (1986) 165-174
+[4.12]	H. Allik, T.J.R. Hughes, Finite element method for piezoelectric vibration, Int. Journal for Numerical Methods in Engineering, Vol. 2 (1970) 151-157
+[4.13]	L.D. Clayton, S.R. Swanson and E.P. Eer Nisse, Modifications of the double-ended tuning fork geometry for reduced coupling to its surroundings: finite element analysis and experiment, IEEE Trans. on UFFC 34 (1987) 243-252
+[4.14]	M. Alavi, Th. Fabula, A. Schumacher, H.-J. Wagner: Monolithic Microbridges in silicon using laser machining and anisotropic etching, Sensors and Actuators A, 37-38 (1993) 661-665
+[4.15]	T. Fabula, S. Büttgenbach, Analytical and finite element modeling of resonant silicon microsensors, Sensors and Materials, special issue on resonant microsensors (to be published) 
+[4.16]	Swanson Analysis Systems, Inc., Johnson Road, P.O. Box 65, Houston, PA, USA
+[4.17]	G.J. Tijhuis, Onderzoek naar het Druk-Frequentie verband van een resonerende membraan druksensor, diploma thesis, Univ. of Twente, The Netherlands (1987) 
+[4.18]	A. Schroth, Modellierung mikromechanischer Membranen, diploma thesis, TU Chemnitz / HSG-IMIT, Villingen-Schwenningen (1992) 
+[4.19]	Th. Fabula, A. Schroth: Simulation des dynamischen Verhaltens mikromechanischer Membranen, VDI-Fachtagung für Gerätetechnik und Mikrosystemtechnik, TU Chemnitz, March 16.-18. (1992), published in: VDI-Bericht 960, VDI-Verlag Düsseldorf (1992)
+[4.20]	Th. Fabula, Dynamische Berechnungen in der Mikromechanik - Simulation / Messung, 10. ANSYS Users' Meeting, Arolsen, 28.-30. Oktober 1992, CADFEM GmbH, Grafing
+[4.21]	S. Bouwstra, B. Geijselaers, On the resonance frequencies of microbridges, Proc. TRANSDUCERS '91, Digest of technical papers, San Francisco (1991) 538-542
+[4.22]	H.J.M. Geijselaers, H. Tijdeman, The dynamic mechanical characteristics of a resonating microbridge mass-flow sensor, Sensors and Actuators A, 29 (1991) 37-41
+[4.23]	Th. Fabula, Dynamic behaviour of micromechanical structures - finite element simulation for design assistance and its experimental verification, PhD thesis, Univ. of Bonn / HSG-IMIT (in preparation)
+[4.24]	J. C. Greenwood, D. W. Satchell, Miniature silicon resonant pressure sensor, IEE Proceedings, Vol. 135, No. 5 (1988) 369372
+[4.25]	K. E. B. Thornton, D. Uttamchandani, B. Culshaw, A sensitive optically excited resonator pressure sensor, Sensors and Actuators A, 24 (1990) 1519
+[4.26]	R. A. Buser, L. Schultheis, N. F. de Rooij, Silicon pressure sensor based on a resonating element, Sensors and Actuators A, 2527 (1991) 717722
+[4.27]	A. Schumacher, M. Alavi, Th. Fabula, B. Schmidt, H.-J. Wagner, Monolithic bridge-on-diaphragm microstructure for sensor applications, Micro System Technologies '94, Berlin, Oct. 19.-21. (1994)
+[4.28]	Structural Dynamics Research Corporation, Milford, Ohio, USA

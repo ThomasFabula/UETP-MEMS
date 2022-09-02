@@ -1,0 +1,64 @@
+References for CHAPTER 1
+
+
+Introduction to MEMS and resonant sensors
+
+
+
+by: Thomas Fabula, 
+Institute of Microstructure and Information Technology (IMIT), 
+Villingen-Schwenningen, 
+Germany
+
+
+References
+
+
+[1.1]	B. Schmidt, UETP-MEMS Course: Micro actuators, FSRM, Switzerland (1993)
+
+[1.2]	Positionspapier des Fachausschusses Mikrosytemtechnik der VDE/VDI-Gesellschaft für Mikroelektronik (GME), January 1991
+
+[1.3]	R. Feynman, There's plenty of room at the bottom, talk given on December 26, 1959, annual meeting of the american physical society at the California Institute of Technology, published in: Miniaturization, H.D. Gilbert, Ed., Van Nostrand Reinhold, New York, NY 10003, reprinted in: J. Microelectromechanical Systems, Vol. 1, No. 1 (1992) 60 66
+
+[1.4]	R. Feynman, Infinitesimal machinery, talk given on february 23, 1983 at the Jet Propulsion Laboratory, Pasadena CA. Reprinted in: J. Microelectromechanical Systems, Vol. 2, No. 1 (1993) 4 14
+
+[1.5]	A.J. Ricco, S.J. Martin, R.M. White, Short course for Transducers '91: Fundamentals of ultrasonic sensors, June 23, San Francisco (1991)
+
+[1.6]	Silicon sensors and microstructures, NovaSensors, September 1988
+
+[1.7]	G. Stemme, Resonant silicon sensors, J. Micromech. Microeng. 1 (1991) 113 125
+
+[1.8]	R.M. Langdon, Resonator sensors   a review, J.Phys.E: Sci.Instrum., Vol.18 (1985) 103-115
+
+[1.9]	R.T. Howe, Resonant microsensors, Proc. TRANSDUCERS '87, Digest of technical papers, Tokio, Japan (1987) 843 848
+
+[1.10]	R.A. Buser, Resonant Sensors, in: Sensors, Volume 7, Mechanical Sensors, eds.: H.H. Bau, N.F. de Rooij, B. Kloeck, VCH Verlagsgesellschaft mbH, Weinheim, FRG (1994) 205 284
+
+[1.11]	P. Hauptmann, Chemical resonant sensors, Int. Symposium on Environmental Sensing, Berlin, 22-26 June (1992)
+
+[1.12]	Swanson Analysis Systems, Inc., Johnson Road, P.O. Box 65, Houston, PA, USA 
+
+[1.13]	DRUCK Ltd., Firetree Lane, Groby, Leicester/GB, data sheets: RPT 100, Resonant pressure sensor (1991)
+
+[1.14]	YOKOGAWA Electric Corporation, Data sheets: DPharp Differential pressure and pressure trans¬mitter, Tokyo, Japan (1993)
+
+[1.15]	A. Heuberger (ed.), Mikromechanik, Springer Verlag, Berlin (1989)
+
+[1.16]	S. Büttgenbach, Mikromechanik, B. G. Teubner, Stuttgart (1991)
+
+[1.17]	S. Middelhoek, S.A. Audet, Silicon sensors, Academic Press Limited,  London (1989)
+
+[1.18]	W. Menz, P. Bley, Mikrosystemtechnik für Ingenieure, VCH Verlagsgemeinschaft mbH, Weinheim, FRG (1993)
+
+[1.19]	H. Pavlicek, G. Wachutka, UETP-MEMS Course: CAD tools for MEMS, FSRM, Switzerland (1993)
+
+[1.20]	B. Kloeck, UETP-MEMS Course: Hands on MEMS, FSRM, Switzerland (1993)
+
+[1.21]	M. Elwenspoek, UETP-MEMS Course: Etching technology, FSRM, Switzerland (1993)
+
+[1.22]	B. Cretin, G. Tribillon, UETP-MEMS Course: Optical methods for measurements in microtechnology, FSRM, Switzerland (1993)
+
+[1.23]	P. Beckmann, W. Dreher, W. Nisch, R. Reichl, UETP-MEMS Course: Surface and interface analysis, FSRM, Switzerland (1993)
+
+[1.24]	G. Staufert, H. Reber, H. Hieber, UETP-MEMS Course: Packaging, FSRM, Switzerland (1993)
+

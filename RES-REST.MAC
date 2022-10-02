@@ -13,7 +13,7 @@ antype,modal         ! activate prestressed modal analysis
 total,50,1           ! -> use 50 MDOFs, exclude rotational DOFs
 modopt,,3            ! -> use Householder method
 mxpand,3             ! -> expand 3 modes to full DOF set 
-prstres,on           ! -> include prestress effects
+pstres,on            ! -> include prestress effects
 solve                ! start RESTART analysis
 fini                 ! back to BEGIN level
 

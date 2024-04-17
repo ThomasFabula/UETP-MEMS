@@ -13,7 +13,7 @@
 /COM
 ELTY=45              ! element type: 3-D 8-node solid
                      !               (STIF45)
-acx=0.0              ! acceleration in x-direction [mm/sý]
+acx=0.0              ! acceleration in x-direction [mm/sÃ½]
 acy=0.0              !      "        " y-   "
 acz=9810*20          !      "        " z-   "
 /COM
